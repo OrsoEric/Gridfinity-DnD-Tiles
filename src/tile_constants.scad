@@ -1,3 +1,12 @@
+// 		2025-10-15 Tile Constants
+//	Now I have a multicolor printer, so I can do mixed colors
+//	Lowest level is white for the base
+//	I get an optional water level
+//	Then I get a terrain level
+//	Then I get the mountain building level
+
+
+
 //------------------------------------------------------------------------------
 //	GRIDFINITY CONSTANTS
 //------------------------------------------------------------------------------
