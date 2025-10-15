@@ -13,7 +13,12 @@ include <tile_constants.scad>
 
 include <url.scad>
 
-module tile_dirt()
+module tile_dirt
+(
+	//Number of gridfinity bases
+	inx = 1,
+	iny = 1
+)
 {
 	difference()
 	{
@@ -22,18 +27,24 @@ module tile_dirt()
 			//Instance a gridfinity base tile
 			grid_block
 			(
-				num_x=1,
-				num_y=1,
+				num_x=inx,
+				num_y=iny,
 				num_z=0.14,
 				magnet_diameter=0,
 				screw_depth=0
 			);
 			//Instance fractal terrain
-			translate([0,0,gz_gridfinity_socket_offset])
+			translate
+			([
+				(inx-1)/2 * gw_gridfinity,
+				(iny-1)/2 * gw_gridfinity,
+				gz_gridfinity_socket_offset
+			])
 			terrain
 			(
 				in_max_levels = 5,
-				in_width = gw_gridfinity,
+				ix_size = inx * gw_gridfinity,
+				iy_size = iny * gw_gridfinity,
 				iz_min_surface_height = gz_dirt_base,
 				iz_max_surface_height = gz_dirt_top,
 				in_height_roll = gz_dirt_consistency,
@@ -69,6 +80,8 @@ module grid_of_tiles(rows, cols, spacing)
 }
 
 // Set rows, columns, and spacing
-grid_of_tiles(rows = 1, cols = 1, spacing = 42);
+//grid_of_tiles(rows = 1, cols = 1, spacing = 42);
 
-//tile_sand();
+tile_dirt( 1, 1);
+
+//tile_dirt( 2, 2);
