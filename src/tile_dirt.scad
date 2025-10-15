@@ -13,7 +13,7 @@ include <tile_constants.scad>
 
 include <url.scad>
 
-module tile_sand()
+module tile_dirt()
 {
 	difference()
 	{
@@ -24,7 +24,7 @@ module tile_sand()
 			(
 				num_x=1,
 				num_y=1,
-				num_z=0.5,
+				num_z=0.14,
 				magnet_diameter=0,
 				screw_depth=0
 			);
@@ -34,18 +34,24 @@ module tile_sand()
 			(
 				in_max_levels = 5,
 				in_width = gw_gridfinity,
-				iz_min_surface_height = gz_grass_base,
-				iz_max_surface_height = gz_sand_height,
-				in_height_roll = gn_grass_flat_consistency,
-				ir_corner_rounding = gr_corner_terrain_rounding,
-				in_erosion = 2
+				iz_min_surface_height = gz_dirt_base,
+				iz_max_surface_height = gz_dirt_height+5,
+				in_height_roll = gz_dirt_consistency,
+				ir_corner_rounding = gr_gridfinity_rounding,
+				in_erosion = gn_dirt_erosion
 			);
+			
 		}
 		union()
 		{
 			//rotate([180,180,180])
 			//qr_render( gnn_qr_data, iz_height = 0.5 );
-			translate([-0.7*gw_gridfinity/2,-0.0*gw_gridfinity/2,+0.5])
+			translate
+			([
+				-0.7*gw_gridfinity/2,
+				-0.0*gw_gridfinity/2,
+				+0.5
+			])
 			rotate([180,0,0])
 			project_url(in_size = 3,iz_height = 0.5);
 		}
@@ -58,7 +64,7 @@ module grid_of_tiles(rows, cols, spacing)
     for (y = [0:rows-1])
     {
         translate([x * spacing, y * spacing, 0])
-            tile_sand();
+            tile_dirt();
     }
 }
 

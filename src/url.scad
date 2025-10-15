@@ -16,7 +16,7 @@ module project_url(in_size = 2,in_spacing=1.1,iz_height = 0.5,ih_line_spacing=3)
 	text("GRIDFINITY-",size=in_size,spacing=in_spacing,font="Futura:style=Bold");
 	translate([0,-1*(in_size+ih_line_spacing),0])
 	linear_extrude(iz_height)
-	text("MEDIEVAL-",size=in_size,spacing=in_spacing,font="Futura:style=Bold");
+	text("DND-",size=in_size,spacing=in_spacing,font="Futura:style=Bold");
 	translate([0,-2*(in_size+ih_line_spacing),0])
 	linear_extrude(iz_height)
 	text("TILES",size=in_size,spacing=in_spacing,font="Futura:style=Bold");

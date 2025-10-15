@@ -90,7 +90,8 @@ terrain
 	in_width = 100,
 	iz_min_surface_height = 2,
 	iz_max_surface_height = 32,
-	in_erosion = 0
+	in_erosion = 0,
+	ir_corner_rounding = 10
 );
 }
 
@@ -698,7 +699,15 @@ module renderlandscape
 
 // corner bevels
 
-module cornerbevels(bevel, xsidelen, ysidelen, zht, zmin) {
+module cornerbevels
+(
+	bevel,
+	xsidelen,
+	ysidelen,
+	zht,
+	zmin
+)
+{
     sq2 = sqrt(2);
     xs = xsidelen/2;
     ys = ysidelen/2;
@@ -712,7 +721,14 @@ module cornerbevels(bevel, xsidelen, ysidelen, zht, zmin) {
     }
 }
 
-module roundbevels(bevel, xsidelen, ysidelen, zht, zmin)
+module roundbevels
+(
+	bevel,
+	xsidelen,
+	ysidelen,
+	zht,
+	zmin
+)
 {
 	//I construct a cube
 	//I construct a rounded cube
@@ -734,7 +750,7 @@ module roundbevels(bevel, xsidelen, ysidelen, zht, zmin)
 				for (x = [-xsidelen/2+bevel, +xsidelen/2-bevel]) {
 					for (y = [-ysidelen/2+bevel, +ysidelen/2-bevel]) {
 						translate([x, y]) {
-							circle(bevel);
+							circle(r=bevel);
 						}
 					}
 				}
