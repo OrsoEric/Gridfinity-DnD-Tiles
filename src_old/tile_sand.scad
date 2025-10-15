@@ -63,6 +63,6 @@ module grid_of_tiles(rows, cols, spacing)
 }
 
 // Set rows, columns, and spacing
-grid_of_tiles(rows = 1, cols = 1, spacing = 42);
+grid_of_tiles(rows = 5, cols = 5, spacing = 42);
 
 //tile_sand();
