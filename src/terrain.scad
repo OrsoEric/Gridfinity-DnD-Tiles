@@ -88,8 +88,8 @@ terrain
 (
 	in_max_levels = 4,
 	in_width = 100,
-	iz_min_surface_height = 2,
-	iz_max_surface_height = 32,
+	iz_min_surface_height = 5,
+	iz_max_surface_height = 20,
 	in_erosion = 0,
 	ir_corner_rounding = 10
 );
@@ -144,11 +144,10 @@ module terrain
 		);
 		roundbevels
 		(
-			ir_corner_rounding,
 			in_width,
 			in_width,
-			4*iz_max_surface_height,
-			-2*iz_max_surface_height-iz_min_surface_height
+			iz_max_surface_height,
+			ir_corner_rounding
 		);
     }
 }
@@ -721,36 +720,47 @@ module cornerbevels
     }
 }
 
+if (false)
+{
+	roundbevels
+	(
+		ix_side = 20,
+		iy_side = 40,
+		iz_height = 7,
+		ir_rounding = 10
+	);
+
+}
+
 module roundbevels
 (
-	bevel,
-	xsidelen,
-	ysidelen,
-	zht,
-	zmin
+	ix_side,
+	iy_side,
+	iz_height,
+	ir_rounding,
+	in_sides = 60
 )
 {
 	//I construct a cube
 	//I construct a rounded cube
 	//I subtract the two
-	translate([0,0,zmin])
 	difference()
 	{
 		union()
 		{
-			translate([0,0,zht/2])
-			cube([xsidelen,ysidelen,zht],center=true);
+			translate([0,0,iz_height/2])
+			cube([ix_side,iy_side,iz_height],center=true);
 		}
 		union()
 		{
-			linear_extrude(zht)
-			hull($fn=40)
+			linear_extrude(iz_height)
+			hull($fn=in_sides)
 			{
 				// Subtract the four rounded corners using circles
-				for (x = [-xsidelen/2+bevel, +xsidelen/2-bevel]) {
-					for (y = [-ysidelen/2+bevel, +ysidelen/2-bevel]) {
+				for (x = [-ix_side/2+ir_rounding, +ix_side/2-ir_rounding]) {
+					for (y = [-iy_side/2+ir_rounding, +iy_side/2-ir_rounding]) {
 						translate([x, y]) {
-							circle(r=bevel);
+							circle(r=ir_rounding, $fn=in_sides);
 						}
 					}
 				}

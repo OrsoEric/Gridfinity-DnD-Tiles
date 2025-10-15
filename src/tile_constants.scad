@@ -28,9 +28,8 @@ gr_gridfinity_rounding = 3.75;
 //------------------------------------------------------------------------------
 //	taller smoother than grass
 
-gz_dirt_base = gz_gridfinity_socket_offset;
-gz_dirt_top_height = 6;
-gz_dirt_height = gz_dirt_top_height -gz_gridfinity_socket_offset;
+gz_dirt_base = 0;
+gz_dirt_top = 2;
 
 gz_dirt_consistency = 0.9;
 gn_dirt_erosion = 2;

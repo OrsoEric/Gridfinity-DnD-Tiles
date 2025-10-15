@@ -35,7 +35,7 @@ module tile_dirt()
 				in_max_levels = 5,
 				in_width = gw_gridfinity,
 				iz_min_surface_height = gz_dirt_base,
-				iz_max_surface_height = gz_dirt_height+5,
+				iz_max_surface_height = gz_dirt_top,
 				in_height_roll = gz_dirt_consistency,
 				ir_corner_rounding = gr_gridfinity_rounding,
 				in_erosion = gn_dirt_erosion
