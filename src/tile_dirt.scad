@@ -17,10 +17,12 @@ module tile_dirt
 (
 	//Number of gridfinity bases
 	inx = 1,
-	iny = 1,
-	in_fractal_resolution = 5
+	iny = 1
 )
 {
+	//The fractal resolution should increase with tile size
+	in_fractal_resolution = 4 +floor(inx/2 +iny/2);
+
 	x_size = inx<=1?gw_gridfinity:gw_gridfinity+(inx-1)*gw_gridfinity_spacing;
 	y_size = iny<=1?gw_gridfinity:gw_gridfinity+(iny-1)*gw_gridfinity_spacing;
 
@@ -32,6 +34,7 @@ module tile_dirt
 		union()
 		{
 			//Instance a gridfinity base tile
+			color("#ffffff")
 			grid_block
 			(
 				num_x=inx,
@@ -47,7 +50,7 @@ module tile_dirt
 				y_offset,
 				gz_gridfinity_socket_offset
 			])
-			color("#ff0000")
+			color("#b03030")
 			terrain
 			(
 				in_max_levels = in_fractal_resolution,
@@ -93,16 +96,16 @@ module grid_of_tiles(rows, cols, spacing)
 
 if (false)
 translate([0,0,0])
-tile_dirt( 1, 1, 5 );
+tile_dirt( 1, 1 );
 
 if (false)
 translate([2.5*gw_gridfinity,0,0])
-tile_dirt( 2, 2, 6 );
+tile_dirt( 2, 2 );
 
 if (false)
 translate([5.5*gw_gridfinity,0,0])
-tile_dirt( 3, 3, 7 );
+tile_dirt( 3, 3 );
 
 
 grid_of_tiles(1,1,2.2*gw_gridfinity)
-tile_dirt( 2, 2, 6 );
+tile_dirt( 2, 2 );

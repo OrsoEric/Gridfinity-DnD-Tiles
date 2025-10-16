@@ -28,8 +28,11 @@ gr_gridfinity_rounding = 3.75;
 //------------------------------------------------------------------------------
 //	taller smoother than grass
 
+//Minimum height of the fractal terrain above the gridfinity base (gz_gridfinity_socket_offset)
 gz_dirt_base = 0.5;
+//Maximum height of the fractal terrain above the gridfinity base (gz_gridfinity_socket_offset)
 gz_dirt_top = 3;
-
-gz_dirt_consistency = 0.9;
-gn_dirt_erosion = 2;
+//Variation in maximum height. 0 maximum variation. 1 minimum variation, maximum height is the same for all tile
+gz_dirt_consistency = 1.0;
+//After generation, smooth out. 
+gn_dirt_erosion = 1;
