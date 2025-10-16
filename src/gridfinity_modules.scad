@@ -14,7 +14,8 @@ sharp_corners = 0;
 
 // basic block with cutout in top to be stackable, optional holes in bottom
 // start with this and begin 'carving'
-module grid_block(
+module grid_block
+(
     num_x = 1,
     num_y = 1,
     num_z = 1,

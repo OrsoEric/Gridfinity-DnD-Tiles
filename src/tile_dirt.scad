@@ -17,9 +17,16 @@ module tile_dirt
 (
 	//Number of gridfinity bases
 	inx = 1,
-	iny = 1
+	iny = 1,
+	in_fractal_resolution = 5
 )
 {
+	x_size = inx<=1?gw_gridfinity:gw_gridfinity+(inx-1)*gw_gridfinity_spacing;
+	y_size = iny<=1?gw_gridfinity:gw_gridfinity+(iny-1)*gw_gridfinity_spacing;
+
+	x_offset = inx<=1?0:gw_gridfinity*0+(inx-1)*gw_gridfinity_spacing/2;
+	y_offset = iny<=1?0:gw_gridfinity*0+(iny-1)*gw_gridfinity_spacing/2;
+
 	difference()
 	{
 		union()
@@ -36,15 +43,16 @@ module tile_dirt
 			//Instance fractal terrain
 			translate
 			([
-				(inx-1)/2 * gw_gridfinity,
-				(iny-1)/2 * gw_gridfinity,
+				x_offset,
+				y_offset,
 				gz_gridfinity_socket_offset
 			])
+			color("#ff0000")
 			terrain
 			(
-				in_max_levels = 5,
-				ix_size = inx * gw_gridfinity,
-				iy_size = iny * gw_gridfinity,
+				in_max_levels = in_fractal_resolution,
+				ix_size = x_size,
+				iy_size = y_size,
 				iz_min_surface_height = gz_dirt_base,
 				iz_max_surface_height = gz_dirt_top,
 				in_height_roll = gz_dirt_consistency,
@@ -75,13 +83,26 @@ module grid_of_tiles(rows, cols, spacing)
     for (y = [0:rows-1])
     {
         translate([x * spacing, y * spacing, 0])
-            tile_dirt();
+			children();
+            //tile_dirt();
     }
 }
 
 // Set rows, columns, and spacing
 //grid_of_tiles(rows = 1, cols = 1, spacing = 42);
 
-tile_dirt( 1, 1);
+if (false)
+translate([0,0,0])
+tile_dirt( 1, 1, 5 );
 
-//tile_dirt( 2, 2);
+if (false)
+translate([2.5*gw_gridfinity,0,0])
+tile_dirt( 2, 2, 6 );
+
+if (false)
+translate([5.5*gw_gridfinity,0,0])
+tile_dirt( 3, 3, 7 );
+
+
+grid_of_tiles(1,1,2.2*gw_gridfinity)
+tile_dirt( 2, 2, 6 );
